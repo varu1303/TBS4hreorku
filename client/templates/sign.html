@@ -22,7 +22,7 @@
           <div  ng-show="Sign.login_serverError" class="alert alert-warning">
               Server Error, Try later!
           </div>
-          <p><button type="submit">{{Sign.logbtn_text}}</button></p>
+          <p><button type="submit" ng-disabled="Sign.logdisable">{{Sign.logbtn_text}}</button></p>
         </form>
         <p><a href="/forgotPass">FORGOT PASSWORD?</a></p>
       </div>
@@ -60,7 +60,7 @@
           <div ng-show="Sign.EmailorPhoneTaken" class="alert alert-warning">
             Email ID or Phone number already registerd!
           </div>
-          <p><button type="submit">{{Sign.regbtn_text}}</button></p>
+          <p><button type="submit" ng-disabled="Sign.regdisable">{{Sign.regbtn_text}}</button></p>
         </form>
 
         <div class="reg_success" ng-show="Sign.regSuccess">

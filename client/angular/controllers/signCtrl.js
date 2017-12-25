@@ -23,12 +23,15 @@ function signController(httpRequest, tokenService, $location, $rootScope, $timeo
     sc.notValidPhone = false;
     sc.EmailorPhoneTaken = false;
     sc.regSuccess = false;
+    sc.logdisable = false;
+    sc.regdisable = false;
     sc.logbtn_text = 'LOGIN';
     sc.regbtn_text = 'REGISTER';
 
   }
 
   let resetLoginErrors = function () {
+    sc.logdisable = false;
     sc.login_emailNotFound = false;
     sc.login_incorrectPassword = false;
     sc.login_serverError = false;
@@ -49,6 +52,7 @@ function signController(httpRequest, tokenService, $location, $rootScope, $timeo
 
     if (!logFormInvalid) {
       sc.logbtn_text = 'LOGGING IN...';
+      sc.logdisable = true;
       let userCredentials = {};
       userCredentials.emailId = sc.logId;
       userCredentials.password = sc.logPass;
@@ -91,6 +95,7 @@ function signController(httpRequest, tokenService, $location, $rootScope, $timeo
       sc.regNoMatch = true;
     else if (!regFormInvlaid) {
       sc.regbtn_text = 'REGISTERING...';
+      sc.regdisable = true;
       let userDetails = {};
       userDetails.name = sc.upName;
       userDetails.emailId = sc.upId;
@@ -108,6 +113,7 @@ function signController(httpRequest, tokenService, $location, $rootScope, $timeo
         })
         .catch(res => {
           sc.regDone = false;
+          sc.regdisable = false;
           sc.regbtn_text = 'REGISTER';
           if (res.data.error['userDetails.phoneNumber'])
             sc.notValidPhone = true; 

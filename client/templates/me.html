@@ -223,7 +223,7 @@
                       changePass_form.conChangePass.$error.required ) && Me.changeDone" class="alert alert-warning">
           Both fields are mandatory!
       </div>
-      <p class="changeP"><button type="submit">RESET</button></p>
+      <p class="changeP"><button type="submit" ng-disabled="Me.passChangeDis">RESET</button></p>
 
       <div id="resetDone" ng-show="Me.successReset">
         <div class="pClass">

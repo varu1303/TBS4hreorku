@@ -24,6 +24,7 @@ function meController($rootScope, tokenService, httpRequest, $location, timestam
   mc.successReset = false;
   mc.failReset = false;
   mc.getTicketError = false;
+  mc.passChangeDis = false;
   mc.newPass = '';
   mc.conNewPass = '';
   mc.showStatus = 'all';
@@ -35,13 +36,16 @@ function meController($rootScope, tokenService, httpRequest, $location, timestam
         mc.changeNoMatch = true;
       else {
         mc.changeDone = false;
+        mc.passChangeDis = true;
         httpRequest.changePass(mc.newPass)
           .then(res => {
             mc.failReset = false;;
             mc.successReset = true;
+            mc.passChangeDis = false;
           })
           .catch(res => {
             mc.failReset = true;
+            mc.passChangeDis = false;
           })
       }
     }

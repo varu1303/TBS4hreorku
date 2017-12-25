@@ -14,6 +14,7 @@ function raiseController($rootScope, tokenService, httpRequest, $timeout) {
   rc.tickAttempt = false;
   rc.tickRaised = false;
   rc.tickRaiseFail = false;
+  rc.raiseDis = false;
   rc.tickTitle = '';
   rc.tickDescription = '';
 
@@ -31,11 +32,13 @@ function raiseController($rootScope, tokenService, httpRequest, $timeout) {
           rc.tickDescription = '';
           rc.tickRaiseFail = false;
           rc.tickRaised = true;
+          rc.raiseDis = false;
           $timeout( function () {
             rc.tickRaised = false;
           }, 4000);
         })
         .catch(res => {
+          rc.raiseDis = false;
           rc.tickRaiseFail = true;
           $timeout( function () {
             rc.tickRaiseFail = false;
