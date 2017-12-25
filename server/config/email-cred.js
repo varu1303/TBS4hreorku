@@ -1,6 +1,6 @@
 module.exports = {
-  emailId: '',  //ENTER EMAIL ID
-  password: ''              //ENTER PASSWORD
+  emailId: 'whit3collar13@gmail.com',  //ENTER EMAIL ID
+  password: 'nginX@1303'              //ENTER PASSWORD
 }
 
 // MAKE SURE Login by app is allowed by using this link -
