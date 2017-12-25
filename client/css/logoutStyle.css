@@ -1,0 +1,14 @@
+.log_page {
+  width: 80%;
+  height: 80vh;
+  margin: 0 auto;
+  display: flex;
+  background-color: #18BC9C;
+}
+
+.log_page p {
+  margin: auto;
+  color: #FFF;
+  text-align: center;
+  font-size: 3rem;
+}

@@ -1,0 +1,242 @@
+<div ng-show="Me.isAdmin">
+  <div class="a_container">
+    <div class="a_box">
+      <div class="row row-border">
+        <div class="col-xs-12 col-sm-10">
+          <p class="info_box">
+              <span>ADMIN</span>
+              <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span id="info_line"><br></span>
+              <i class="fa fa-phone" aria-hidden="true"></i> {{Me.phoneNumber}} 
+              <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span id="info_line"><br></span>
+              <i class="fa fa-envelope" aria-hidden="true"></i> {{Me.emailId}}
+          </p>
+        </div>
+        <div class="col-xs-3 hidden-sm hidden-md hidden-lg"></div>
+        <div class="col-xs-6 col-sm-2">
+          <p class="iconPass" ng-click="Me.unlock()"><i class="fa fa-unlock" aria-hidden="true"></i></p>
+        </div>
+        <div class="col-xs-3 hidden-sm hidden-md hidden-lg"></div>
+      </div>
+      <div class="row row-border">
+        <div class="col-xs-12 col-sm-6">
+          <p class="icons">TOTAL TICKETS: {{Me.adminAssignedTicket}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p class="icons">OPEN TICKETS: {{Me.adminOpenTicket}}</p>
+        </div>
+      </div>
+      <div class="row row-border">
+        <h2 class="col-xs-12">ASSIGNED TICKETS</h2>
+      </div>
+      <!-- <div id="tickData" class="row row-border" ng-repeat="ticket in Me.assignedTickets | reverse">
+          <div class="col-xs-12 col-sm-8">
+            <p>
+              {{ticket.ticketNo}} : {{ticket.ticketTitle}}
+            </p>
+            <p>
+              Raised by {{ticket.raisedBy.name}} on {{ticket.date | date: "MMM d, y h:mm:ss a"}}
+            </p>
+          </div>
+          <div class="hidden-xs col-sm-4">
+            <p ng-class="{op: ticket.status == true, cl: ticket.status == false}" >{{ticket.status ? 'OPEN' : 'CLOSED'}}</p>
+            <p class="tickView" ng-click="Me.viewTicket(ticket._id)">VIEW</p>
+          </div>
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <p ng-class="{op: ticket.status == true, cl: ticket.status == false}" >{{ticket.status ? 'OPEN' : 'CLOSED'}}</p>
+          </div>
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <p class="tickView" ng-click="Me.viewTicket(ticket._id)">VIEW</p>
+          </div>
+      </div> -->
+
+      <div class="selectDiv">
+      <label for="statusSelect"> SHOW </label>&nbsp; &nbsp;
+      <select name="statusSelect" ng-model="Ticket.showStatus" ng-init="Ticket.showStatus= 'all'">
+        <option value="all">ALL</option>
+        <option value="open">OPEN</option>
+        <option value="close">CLOSE</option>
+      </select><br>
+      </div>
+
+      <div class="row tick_row" ng-repeat="ticket in Me.assignedTickets  | reverse | status:Ticket.showStatus">
+        <div class="col-xs-12 ticket_box">
+          <div class="flex_contain">
+            <p class="flex_describe">
+              {{ticket.ticketNo}} : {{ticket.ticketTitle}}
+              <br>
+              Raised by {{ticket.raisedBy.name}} on {{ticket.date | date: "MMM d, y h:mm:ss a"}}
+            </p>
+            <p class="flex_status" ng-class="{op: ticket.status == true, cl: ticket.status == false}">
+              &nbsp; <br> &nbsp;
+            </p>
+          </div>
+          <div id="counter">
+            {{$index + 1}}    
+          </div>
+        </div>
+        <div class="hidden-xs col-sm-3">
+          &nbsp;
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p class="dToView" ng-click="Me.viewTicket(ticket._id)">
+            VIEW      
+          </p>
+        </div>
+        <div class="hidden-xs col-sm-3">
+          &nbsp;
+        </div>
+      </div>
+      <div class="row row-border" ng-show="Me.assignedTickets.length == 0">
+          <div class="col-xs-12">
+              <p class="icons">NO TICKETS HAVE BEEN ASSIGNED</p>
+          </div>
+      </div> 
+      
+      <div ng-show="Me.getTicketError" class="alert alert-warning">
+          Error in getting tickets, Come back Later!
+      </div>
+    </div>
+  </div>
+</div>
+<!-- USER begins -->
+<div ng-show="!Me.isAdmin">
+  <div class="a_container">
+    <div class="a_box">
+      <div class="row row-border">
+        <div class="col-xs-12 col-sm-10">
+          <p class="info_box">
+              <span>USER</span>
+              <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span id="info_line"><br></span>
+              <i class="fa fa-phone" aria-hidden="true"></i> {{Me.phoneNumber}} 
+              <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span id="info_line"><br></span>
+              <i class="fa fa-envelope" aria-hidden="true"></i> {{Me.emailId}}
+          </p>
+        </div>
+        <div class="col-xs-3 hidden-sm hidden-md hidden-lg"></div>
+        <div class="col-xs-6 col-sm-2">
+          <p class="iconPass" ng-click="Me.unlock()"><i class="fa fa-unlock" aria-hidden="true"></i></p>
+        </div>
+        <div class="col-xs-3 hidden-sm hidden-md hidden-lg"></div>
+      </div>
+      <div class="row row-border">
+        <div class="col-xs-12 col-sm-6">
+          <p class="icons">TOTAL TICKETS: {{Me.userRaisedTicket}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p class="icons">OPEN TICKETS: {{Me.userOpenTicket}}</p>
+        </div>
+      </div>
+      <div class="row row-border">
+        <h2 class="col-xs-12">RAISED TICKETS</h2>
+      </div>
+      <!-- <div id="tickData" class="row row-border" ng-repeat="ticket in Me.raisedTickets | reverse">
+          <div class="col-xs-12 col-sm-8">
+            <p>
+              {{ticket.ticketNo}} : {{ticket.ticketTitle}}
+            </p>
+            <p>
+              Raised on {{ticket.date | date: "MMM d, y h:mm:ss a"}}
+            </p>
+          </div>
+          <div class="hidden-xs col-sm-4">
+            <p ng-class="{op: ticket.status == true, cl: ticket.status == false}" >{{ticket.status ? 'OPEN' : 'CLOSED'}}</p>
+            <p class="tickView" ng-click="Me.viewTicket(ticket._id)">VIEW</p>
+          </div>
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <p ng-class="{op: ticket.status == true, cl: ticket.status == false}" >{{ticket.status ? 'OPEN' : 'CLOSED'}}</p>
+          </div>
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <p class="tickView" ng-click="Me.viewTicket(ticket._id)">VIEW</p>
+          </div>
+      </div>  -->
+      <div class="selectDiv">
+      <label for="statusSelect"> SHOW </label>&nbsp; &nbsp;
+      <select name="singleSelect" ng-model="Ticket.showStatus" ng-init="Ticket.showStatus= 'all'">
+        <option value="all">ALL</option>
+        <option value="open">OPEN</option>
+        <option value="close">CLOSE</option>
+      </select><br>
+      </div>
+      <div class="row tick_row" ng-repeat="ticket in Me.raisedTickets  | reverse | status:Ticket.showStatus">
+        <div class="col-xs-12 ticket_box">
+          <div class="flex_contain">
+            <p class="flex_describe">
+              {{ticket.ticketNo}} : {{ticket.ticketTitle}}
+              <br>
+              Raised by {{ticket.raisedBy.name}} on {{ticket.date | date: "MMM d, y h:mm:ss a"}}
+            </p>
+            <p class="flex_status" ng-class="{op: ticket.status == true, cl: ticket.status == false}">
+              &nbsp; <br> &nbsp;
+            </p>
+          </div>
+          <div id="counter">
+            {{$index + 1}}    
+          </div>
+        </div>
+        <div class="hidden-xs col-sm-3">
+          &nbsp;
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p class="dToView" ng-click="Me.viewTicket(ticket._id)">
+            VIEW      
+          </p>
+        </div>
+        <div class="hidden-xs col-sm-3">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row row-border" ng-show="Me.raisedTickets.length == 0">
+        <div class="col-xs-12">
+          <p class="icons">YOU HAVE NOT RAISED ANY TICKETS</p>
+        </div>
+      </div> 
+
+      <div ng-show="Me.getTicketError" class="alert alert-warning">
+          Error in getting tickets, Come back Later!
+      </div>
+    </div>
+  </div>
+</div>
+<div id="changePassBox" ng-show="Me.lockClicked">
+  <div class="centered_form">
+    <div id="close" ng-click="Me.unlock()">
+      <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+    </div>
+    <form name="changePass_form" ng-submit="Me.changePass(changePass_form.$invalid)" novalidate>
+      <p class="changeP">
+        <input type="password" placeholder="Password" name="changePass" ng-model="Me.newPass" ng-minlength="6" ng-maxlength="10" required>
+      </p>
+      <div  ng-show="(changePass_form.changePass.$error.minlength || 
+      changePass_form.changePass.$error.maxlength) && Me.changeDone" class="alert alert-warning">
+        Password should be 6 to 10 characters long!
+      </div>
+      <p class="changeP"><input type="password" placeholder="Confirm Password" name="conChangePass" ng-model="Me.conNewPass" required></p>
+      <div  ng-show="Me.changeNoMatch && Me.changeDone" class="alert alert-warning">
+          Passwords do not match!
+      </div>
+      <div  ng-show="(changePass_form.changePass.$error.required || 
+                      changePass_form.conChangePass.$error.required ) && Me.changeDone" class="alert alert-warning">
+          Both fields are mandatory!
+      </div>
+      <p class="changeP"><button type="submit">RESET</button></p>
+
+      <div id="resetDone" ng-show="Me.successReset">
+        <div class="pClass">
+          <p><i class="fa fa-thumbs-up fa-3x" aria-hidden="true"></i></p>
+          <p>Done!</p>
+        </div>
+      </div>
+      <div id="resetDone" ng-show="Me.failReset">
+        <div class="pClass">
+          <p><i class="fa fa-thumbs-down fa-3x" aria-hidden="true"></i></p>
+          <p>Server Error, Try Later!</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

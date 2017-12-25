@@ -1,0 +1,76 @@
+.prob_box {
+  min-height: 101vh;
+}
+
+#tickForm {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: rgba(44, 62, 80, .3);
+  position: relative;
+}
+
+#tickForm p {
+  text-align: center;
+  padding-top: .2rem;
+  width: 100%;
+}
+
+#tickForm p input {
+  width: 100%;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#tickForm p button {
+  width: 70%;
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#tickForm p textarea {
+  width: 100%;
+  height: 25rem;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  resize: none;
+}
+
+#raiseDone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #18BC9C;
+  display: flex;
+}
+
+#raiseDone .pClass {
+  margin: auto;
+}
+
+#raiseDone .pClass p {
+  text-align: center;
+  color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  #tickForm {
+    width: 100%;
+  }
+
+  #tickForm p textarea {
+    width: 100%;
+    height: 35rem;
+  }
+}

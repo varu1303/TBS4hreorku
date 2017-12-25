@@ -1,0 +1,188 @@
+.a_container {
+  width: 100%;
+}
+
+.a_box {
+  width: 80%;
+  min-height: 101vh;
+  margin: 0 auto;
+}
+
+.info_box {
+  padding: 1rem;
+  background-color: #2C3E50;
+  text-align: center;
+  color: #FFF;
+}
+
+.row-border {
+  /* margin-top: 1rem; */
+  padding: 1rem;
+}
+
+.iconPass {
+  text-align: center;
+  padding: 1rem;
+  color: #FFF;
+  background-color: #18BC9C;
+  transition: transform .1s ease-in-out;
+  /* clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);  rgb(24, 188, 156); */ 
+}
+
+.iconPass:hover {
+  transform: translateY(-2px);
+}
+
+.icons {
+  text-align: center;
+  padding: 1rem;
+  color: #FFF;
+  background-color: #2C3E50;
+  /* clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);  rgb(24, 188, 156); */ 
+}
+
+h2 {
+  text-align: center;
+}
+
+.underline {
+  border: 2px solid #2C3E50;
+}
+
+#tickData {
+  text-align: center;
+  color: #FFF;
+  padding: 1rem;
+  border-top: 2px solid #18BC9C;
+}
+
+
+#tickData p {
+  /* background-color: #18BC9C; */
+  background-color: #2C3E50;
+  padding: 1rem;
+}
+
+#tickData .tickView {
+  /* background-color: #2C3E50; */
+  background-color: #18BC9C;
+  animation: shake 1s ease-in-out 0s 1 forwards;
+}
+
+#tickData .op {
+  background-color: #11772D
+}
+
+#tickData .cl {
+  background-color: #5F7C8A;
+}
+
+
+#changePassBox {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(44, 62, 80, .6);
+  z-index: 200;
+  display: flex;
+}
+
+.centered_form {
+  margin: auto;
+  width: 90%;
+  height: 70%;
+  position: relative;
+  background-color: #FFF;
+  display: flex;
+}
+
+.centered_form #close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: #18BC9C;
+}
+
+.centered_form form {
+  margin: auto;
+  width: 70%;
+  position: relative;
+}
+
+.centered_form form .changeP {
+  text-align: center;
+  padding-top: .2rem;
+  width: 100%;
+}
+
+.centered_form input {
+  width: 100%;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.centered_form form button {
+  width: 70%;
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#resetDone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #18BC9C;
+  display: flex;
+}
+
+#resetDone .pClass {
+  margin: auto;
+}
+
+#resetDone .pClass p{
+  text-align: center;
+  color: #FFF;
+}
+
+.selectDiv {
+  padding: 1rem;
+  text-align: center;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px,0,0); }
+
+  20%, 80% { transform: translate3d(-2px,0,0); }
+
+  30%, 50%, 70% { transform: translate3d(-4px,0,0); }
+
+  40%, 60% { transform: translate3d(4px,0,0); }
+
+}
+
+@media only screen and (min-width: 768px) {
+  #info_line {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #info_tab {
+    display: none;
+  }
+
+  .centered_form form button {
+    width: 60%;
+  }
+}
+

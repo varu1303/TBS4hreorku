@@ -1,0 +1,115 @@
+<div class="sign_container">
+  <div class="sign_box">
+
+    <div class="form_box">
+      <div class="form_side1" ng-show="Sign.active=='login'">
+        <form name="log_form" ng-submit="Sign.logSubmit(log_form.$invalid)" novalidate>
+          <p><input type="email" name= "email" placeholder="Email ID" ng-model="Sign.logId" required></p>
+          <div  ng-show="log_form.email.$invalid && Sign.subDone" class="alert alert-warning">
+            Please enter a valid email id!
+          </div>
+          <!-- {{log_form.$invalid}} -->
+          <p><input type="password" placeholder="Password" name="password" ng-model="Sign.logPass" required></p>
+          <div  ng-show="(log_form.email.$error.required || log_form.password.$error.required) && Sign.subDone" class="alert alert-warning">
+              Email ID and Password are required!
+          </div>
+          <div  ng-show="Sign.login_emailNotFound" class="alert alert-warning">
+              Email ID not registered!
+          </div>
+          <div  ng-show="Sign.login_incorrectPassword" class="alert alert-warning">
+              Incorrect Password!
+          </div>
+          <div  ng-show="Sign.login_serverError" class="alert alert-warning">
+              Server Error, Try later!
+          </div>
+          <p><button type="submit">{{Sign.logbtn_text}}</button></p>
+        </form>
+        <p><a href="/forgotPass">FORGOT PASSWORD?</a></p>
+      </div>
+      <div class="form_side2" ng-show="Sign.active=='register'">
+        <form name="register_form" ng-submit="Sign.regSubmit(register_form.$invalid)" novalidate>
+          <p><input type="text" placeholder="Name" name="name" ng-model="Sign.upName" required></p>
+          <p><input type="email" placeholder="Email ID" name="email" ng-model="Sign.upId" required></p>
+          <div  ng-show="register_form.email.$invalid && Sign.regDone && Sign.upId != ''" class="alert alert-warning">
+              Please enter a valid email id!
+          </div>
+          <p><input type="tel" placeholder="Phone Number" name="phoneNumber" ng-model="Sign.upNumber" ng-minlength="10" ng-maxlength="10" required></p>
+          <div  ng-show="(register_form.phoneNumber.$error.minlength || 
+          register_form.phoneNumber.$error.maxlength) && Sign.regDone" class="alert alert-warning">
+            Enter a valid 10 digit phone Number!
+          </div>
+          <p><input type="password" placeholder="Password" name="password" ng-model="Sign.upPass" ng-minlength="6" ng-maxlength="10" required></p>
+          <div  ng-show="(register_form.password.$error.minlength || 
+          register_form.password.$error.maxlength) && Sign.regDone" class="alert alert-warning">
+            Password should be 6 to 10 characters long!
+          </div>
+          <p><input type="password" placeholder="Confirm Password" name="conPass" ng-model="Sign.upConPass" required></p>
+          <div  ng-show="Sign.regNoMatch" class="alert alert-warning">
+              Passwords do not match!
+          </div>
+          <div  ng-show="(register_form.email.$error.required || 
+                          register_form.password.$error.required || 
+                          register_form.name.$error.required ||
+                          register_form.phoneNumber.$error.required ||
+                          register_form.conPass.$error.required) && Sign.regDone" class="alert alert-warning">
+              All fields are mandatory!
+          </div>
+          <div ng-show="Sign.notValidPhone" class="alert alert-warning">
+            Enter a valid Phone Number!
+          </div>          
+          <div ng-show="Sign.EmailorPhoneTaken" class="alert alert-warning">
+            Email ID or Phone number already registerd!
+          </div>
+          <p><button type="submit">{{Sign.regbtn_text}}</button></p>
+        </form>
+
+        <div class="reg_success" ng-show="Sign.regSuccess">
+          <div class="reg_succbox">
+            <p>WELCOME! to edDesk.</p>
+            <p>You've successfully registered, you can go ahead and LOGIN now.</p>
+            <br>
+            <p><i class="fa fa-check fa-3x" aria-hidden="true"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom_tab">
+      <p>
+        <a id="goLogin" href="#" ng-click="Sign.tab('login')" ng-class="{in: Sign.active == 'login', up: Sign.active == 'register'}">
+          LOGIN
+        </a>
+      </p>
+      <p>
+        <a id="goRegister" href="#" ng-click="Sign.tab('register')" ng-class="{in: Sign.active == 'register', up: Sign.active == 'login'}">
+          REGISTER
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <div class="center_box">
+          <h2>LOCATION</h2>
+          <p>ISH BUILDING, HINJEWADI</p>
+          <p>PUNE, MAHARASHTRA</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="center_box">
+          <h2>AROUND THE WEB</h2>
+          <ul id="web_icon">
+            <li><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></span></a></li>
+            <li id="mid"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-facebook fs-2x" aria-hidden="true"></i></span></a></li>
+            <li><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer_foot">
+      <p>Copyright &copy; edDesk 2017</p>
+    </div>
+  </footer>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html ng-app="edApp">
+ <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="edDesk">
+    <meta name="author" content="Varun">
+    <base href="/">
+
+    <title>edDesk | We solve problems</title>
+
+    <!---Importing Font ---->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Bootstrap minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="css/angular.css">
+    <link rel="stylesheet" href="css/navStyle.css">
+    <link rel="stylesheet" href="css/aboutStyle.css">
+    <link rel="stylesheet" href="css/signStyle.css">
+    <link rel="stylesheet" href="css/forgotStyle.css">
+    <link rel="stylesheet" href="css/meStyle.css">
+    <link rel="stylesheet" href="css/ticketStyle.css">
+    <link rel="stylesheet" href="css/raiseStyle.css">
+    <link rel="stylesheet" href="css/dashStyle.css">
+    <link rel="stylesheet" href="css/logoutStyle.css">
+
+  </head>
+  <body ng-controller="MainController as Main" ng-cloak>
+
+  <!-- NAVBAR -->
+    <nav>
+      <ul>
+        <li id="tag"><a href="/" class="constant">edDESK</a></li>
+        <li ng-show="!notLogged" class="stretch">
+          <a href="/me" ng-class="{'active': highlight == '/me' || highlight.substring(0, 11) == '/viewTicket'}">{{name | uppercase}}</a>
+        </li>
+        <li ng-show="!notLogged && isAdmin">
+          <a href="/dashboard" ng-class="{'active': highlight == '/dashboard'}">DASHBOARD</a>
+        </li>
+        <li ng-show="!notLogged && !isAdmin">
+          <a href="/tickForm" ng-class="{'active': highlight == '/tickForm'}">PROBLEM?</a>
+        </li>
+        <li ng-show="notLogged" class="stretch">
+          <a href="/aboutEd" ng-class="{'active': highlight == '/aboutEd'}">ABOUT US</a>
+        </li>
+        <li ng-show="!notLogged">
+          <a href="/logout" ng-class="{'active': highlight == '/logout'}">LOGOUT</a>
+        </li>
+      </ul>
+    </nav>
+    <i class="fa fa-bars fa-2x" id="icon" aria-hidden="true"></i>
+    <div class="smNav">
+      <ul>
+        <li ng-show="!notLogged">
+          <a href="/me" ng-class="{'active--sm': highlight == '/me' || highlight.substring(0, 11) == '/viewTicket'}">{{name | uppercase}}</a>
+        </li>
+        <li ng-show="!notLogged && isAdmin">
+          <a href="/dashboard" ng-class="{'active--sm': highlight == '/dashboard'}">DASHBOARD</a>
+        </li>
+        <li ng-show="!notLogged && !isAdmin">
+          <a href="/tickForm" ng-class="{'active--sm': highlight == '/tickForm'}">PROBLEM?</a>
+        </li>
+        <li ng-show="notLogged">
+          <a href="/aboutEd" ng-class="{'active--sm': highlight == '/aboutEd'}">ABOUT US</a>
+        </li>
+        <li ng-show="!notLogged">
+          <a href="/logout" ng-class="{'active--sm': highlight == '/logout'}">LOGOUT</a>
+        </li>
+      </ul>      
+    </div>
+  <!-- NAVBAR-END -->
+
+  <!-- VIEWS GET SHOWN in below div
+    1) HOME(edDesk) VIEW with SIGN IN and SIGN UP FORM
+    2) PROBLEM?/DASHBOARD with 'RAISE TICKET' form for USER/'ALL TICKETS' view for ADMIN
+    3) ME with USER's ALL TICKETS/ADMIN's ALL ASSIGNED TICKETS
+    4) TICKET view to get details of a ticket
+    5) SIMPLE LOGOUT VIEW (shown for 1 second when logging out) -->
+
+
+    <div ng-view class="view-animate"></div>
+
+
+
+
+    <!---Importing Icons ---->
+    <script src="https://use.fontawesome.com/7d3906fbc4.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- custom jquery -->
+    <script src="jquery/fixnav.js"></script>
+    <!-- Angular CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <!-- Angular route CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <!--Angular Animate -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+    <!--Angular Code-->
+    <script src="angular/app-angular.js"></script>
+    <script src="angular/route-angular.js"></script>
+    <script src="angular/controllers/signCtrl.js"></script>
+    <script src="angular/controllers/dashCtrl.js"></script>
+    <script src="angular/controllers/raiseCtrl.js"></script>
+    <script src="angular/controllers/meCtrl.js"></script>
+    <script src="angular/controllers/aboutCtrl.js"></script>
+    <script src="angular/controllers/logoutCtrl.js"></script>
+    <script src="angular/controllers/forgotCtrl.js"></script>
+    <script src="angular/controllers/ticketCtrl.js"></script>
+    <script src="angular/services/httpRequest.js"></script>
+    <script src="angular/services/tokenService.js"></script>
+    <script src="angular/services/reverseFilter.js"></script>
+    <script src="angular/services/timeStamp.js"></script>
+    <script src="angular/services/unInvolvedFilter.js"></script>
+    <script src="angular/services/statusFilter.js"></script>
+  </body>
+</html>

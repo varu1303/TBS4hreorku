@@ -1,0 +1,23 @@
+{
+  "name": "ticketsupport",
+  "version": "1.0.0",
+  "description": "Ticket Based Support",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Varun",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-validator": "^4.3.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.7",
+    "nodemailer": "^4.4.1"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2"
+  }
+}

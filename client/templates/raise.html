@@ -1,0 +1,37 @@
+<div>
+  <div class="container prob_box">
+    <div class="row">
+      <div class="col-xs-12">
+        <form id="tickForm" name="problem_form" ng-submit="Raise.tickSubmit()" novalidate>
+          <p><input type="text" name= "subject" placeholder="What is it?" ng-model="Raise.tickTitle" required></p>
+
+          <p><textarea name="detail" ng-model="Raise.tickDescription" placeholder="Tell us a little more.." required></textarea></p>
+
+          <div  ng-show="(problem_form.subject.$error.required || problem_form.detail.$error.required) && Raise.tickAttempt" class="alert alert-warning">
+              Both fields are required so we can help you better!
+          </div>
+
+          <p><button type="submit">RAISE A TICKET</button></p>
+          
+          <div id="raiseDone" ng-show="Raise.tickRaised">
+            <div class="pClass">
+              <p><i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></p>
+              <p>TICKET RAISED!</p>
+              <p>We will get back to you asap!</p>
+              <br>
+            </div>
+          </div>
+
+          <div id="raiseDone" ng-show="Raise.tickRaiseFail">
+            <div class="pClass">
+              <p><i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></p>
+              <p>Ticket could not be raised!</p>
+              <p>Try Later.</p>
+              <br>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

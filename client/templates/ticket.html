@@ -1,0 +1,205 @@
+<div  ng-show="Ticket.getTickDetailError" class="alert alert-warning">
+    Error in getting ticket details, Try Later!
+</div>
+<div class="container tickDetail-box" ng-show="!Ticket.getTickDetailError">
+  <div class="row">
+    <div class="col-xs-12 flexTick">
+      <div class="tickSumm">
+        <p>{{Ticket.this.ticketNo}}</p>
+      </div>
+      <div class="tickStatus">
+        <p  ng-class = "{ op: Ticket.this.status, cl: !Ticket.this.status}">{{Ticket.this.status ? 'OPEN' : 'CLOSED' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 raised_div">
+      <p class="raised_box">
+        <span>{{Ticket.this.raisedBy.name}}</span>
+        <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span id="info_line"><br></span>
+        <i class="fa fa-phone" aria-hidden="true"></i> {{Ticket.this.raisedBy.phoneNumber}}
+        <span id="info_tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span id="info_line"><br></span>
+        <i class="fa fa-envelope" aria-hidden="true"></i> {{Ticket.this.raisedBy.emailId}}
+      </p>
+      <p class="raised_by">OWNER</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 tickTitle">
+      <p>
+        {{Ticket.this.ticketTitle}}
+      </p>
+      <p class="ticketPart">
+        TITLE
+      </p>
+
+      <!-- ICONS FOR OTHER FUNCTIONALITIES -->
+      <div id="tick_functions">
+        <ul id="tick_fun_list">
+          <li class="icon_move" data-toggle="tooltip" title="CLOSE TICKET" ng-show="Ticket.this.status" ng-click="Ticket.closePopup = true">
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+          </li>
+          <li class="icon_move" data-toggle="tooltip" title="REOPEN TICKET" ng-show="!Ticket.this.status" ng-click="Ticket.reopenPopup = true">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          </li>
+          <li class="icon_move" data-toggle="tooltip" title="INVOLVE OTHER ADMIN"  ng-show="Ticket.this.status && isAdmin" ng-click="Ticket.involve()">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </li>
+          <li class="icon_move" data-toggle="tooltip" title="RATE YOUR EXPERIENCE"  ng-show="!Ticket.this.status && !isAdmin" ng-click="Ticket.ratePopup = true">
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </li>  
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 tickDes">
+      <p>
+        {{Ticket.this.ticketDescripton}}
+      </p>
+      <p class="ticketDes">
+        Description
+      </p>
+      <p class="tick_TS">
+        {{Ticket.this.date | date: "MMM d, y h:mm:ss a"}}
+      </p>
+    </div>
+  </div>
+
+  <!-- CLOSE POPUP -->
+  <div class="popups" ng-show="Ticket.closePopup">
+    <div class="center_pop">
+
+      <form name="close_form" ng-submit="Ticket.closingComment(close_form.$invalid)" novalidate>
+        <p>Are you sure you want to close this ticket?</p>
+        <br>
+        <p><input type="text" name="close_cmt" placeholder="Closing this ticket because...." ng-model="Ticket.closeText" required></p>
+        <p><button type="submit">CLOSE</button></p>
+
+        <br>
+        <p ng-show="close_form.close_cmt.$error.required && Ticket.closeSub" class="alert alert-warning">A closing comment required!</p>
+      </form>
+
+      <div id="close" ng-click="Ticket.closePopup = false">
+        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- REOPEN POPUP -->
+  <div class="popups" ng-show="Ticket.reopenPopup">
+    <div class="center_pop">
+
+      <form name="reopen_form" ng-submit="Ticket.reopenTicket(reopen_form.$invalid)" novalidate>
+        <p>Are you sure you want to re-open this ticket?</p>
+        <br>
+        <p><input type="text" name="reopen_cmt" placeholder="Reopening this ticket because...." ng-model="Ticket.reopenText" required></p>
+        <p><button type="submit">RE-OPEN</button></p>
+
+        <br>
+        <p ng-show="reopen_form.reopen_cmt.$error.required && Ticket.reopenSub" class="alert alert-warning">A re-opening comment required!</p>
+      </form>
+
+      <div id="close" ng-click="Ticket.reopenPopup = false">
+        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- RATING POPUP -->
+  <div class="popups" ng-show="Ticket.ratePopup">
+      <div class="center_pop">
+
+        <div class="rating_level">
+          <p>RATE YOUR EXPERIENCE ON 1 to 5 SCALE</p>
+          <div id="ratings">
+            <ul>
+              <li ng-class="{'rateThis': Ticket.rating == 1}" ng-click="Ticket.rating = 1">1</li>
+              <li ng-class="{'rateThis': Ticket.rating == 2}" ng-click="Ticket.rating = 2">2</li>
+              <li ng-class="{'rateThis': Ticket.rating == 3}" ng-click="Ticket.rating = 3">3</li>
+              <li ng-class="{'rateThis': Ticket.rating == 4}" ng-click="Ticket.rating = 4">4</li>
+              <li ng-class="{'rateThis': Ticket.rating == 5}" ng-click="Ticket.rating = 5">5</li>
+            </ul>
+          </div>
+          <p><button ng-click="Ticket.submitRating()">RATE</button></p>
+        </div>
+  
+  
+        <div id="close" ng-click="Ticket.ratePopup = false">
+          <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVITE OPEN -->
+    <div class="popups" ng-show="Ticket.involvePopup">
+      <div class="center_pop">
+        <div class="center_list">
+          <p>Select admins you want to invlove</p>
+          <br>
+          <div class="admin_list">
+            <p ng-repeat="admin in Ticket.admins | unInvolvedAdmins:Ticket.this.involvedAdmins as result" ng-click="Ticket.involveThisAdmin(admin.emailId)" ng-class="{'selectedAdmin' : Ticket.involvedAdmin(admin.emailId)}"> 
+              <span class="name_span">{{admin.name}}</span> <strong>|</strong> <span class="email_span">{{admin.emailId}}</span>
+            </p>
+            <p ng-show="!result.length">NO ADMINS TO INVOLVE</p>
+          </div>
+          
+          <p id="gap"><button ng-click="Ticket.getAdminsInvolved()">INVOLVE</button></p>
+        </div>
+  
+        <div id="close" ng-click="Ticket.involvePopup = false">
+          <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD comment error pop up -->
+    <div class="popups" ng-show="Ticket.tickError">
+        <div class="center_pop">
+          <div id="errbox">
+            <p>{{Ticket.errText}}</p>
+        </div>
+        </div>    
+    </div>
+
+  <!-- <div class="row chat_head"> -->
+    <!-- <div class="col-xs-12 col-sm-6">
+      <p class="chat_tab"> Involved Admins : {{Ticket.this.involvedAdmins.length}}</p>
+    </div> -->
+    <!-- <div class="col-xs-12">
+      <p class="chat_tab"> Comments : {{Ticket.this.chat.length}}</p>
+    </div>
+  </div>  -->
+
+  <div class="row" ng-show="!Ticket.this.status && Ticket.this.rating">
+    <div class="col-xs-12">
+      <p class="rated">User Experience Rated &nbsp;<i class="fa fa-star" aria-hidden="true"></i> &nbsp; <span>{{Ticket.this.rating}} / 5</span></p>
+    </div>
+  </div>
+
+
+  <div class="row" ng-show="Ticket.this.status">
+    <div class="col-xs-12">
+      <form name="message_form" id="chat_form" ng-submit="Ticket.addComment(message_form.$invalid)" novalidate>
+        <p><input type="text" name="message_text" ng-model="Ticket.text" required placeholder="Comment..."></p>
+        <p><button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button></p>
+        <div ng-show="message_form.message_text.$error.required && Ticket.post" class="alert alert-warning">Comment Required!</div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <div ng-repeat="message in Ticket.this.chat | reverse" class="message_box">
+        <!-- <p class="by">{{message.by}}</p> -->
+        <p class="message">{{message.by}} : {{message.text}}</p> 
+        <p class="time">{{message.date | date: "MMM d, y h:mm:ss a"}}</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

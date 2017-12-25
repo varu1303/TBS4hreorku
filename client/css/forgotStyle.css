@@ -1,0 +1,118 @@
+.email_container {
+  width: 100%;
+}
+
+.email_box {
+  width: 80%;
+  min-height: 40vh;
+  margin: 0 auto;
+  position: relative;
+}
+
+.email_box h2 {
+  text-align: center;
+  font-weight: bolder;
+  color: #2C3E50;
+  margin-top: 6rem;
+}
+
+.email_container p {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  text-align: center;
+  padding: 3rem;
+}
+
+.email_box  p input {
+    width: 20%;
+    border: .2rem solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    padding: 1.2rem;
+    transition: width 0.4s ease-in;
+}
+
+.email_box  p input:focus {
+  width: 60%;
+}
+
+.email_box  p input:not(:placeholder-shown) {
+  width: 60%;
+}
+
+
+.email_box  p button {
+  width: 30%;
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+}
+
+.email_box  p button:hover {
+  transform: scale(1.1);
+}
+
+.email_box  p button:active {
+  transform: scale(1);
+}
+
+
+.sendMessage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background-color: #18BC9C;
+  display: flex;
+}
+
+.sendMessage p {
+  margin: auto;
+  color: #FFF;
+  text-align: center;
+}
+
+#toHome:link, #toHome:visited {
+  padding: 3rem;
+  text-decoration: none;
+  color: #FFF;
+}
+
+#toHome:hover, #toHome:active {
+  color: #18BC9C;
+  background-color: #FFF;
+}
+
+@media only screen and (max-width: 767px) {
+  .email_container p {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 620px) {
+  .email_box  p button {
+    display: block;
+    width: 60%;
+    margin-left: 20%;
+  }
+
+  .email_box  p input {
+    width: 50%;
+  }
+
+  .email_box  p input:focus {
+    width: 90%;
+  }
+  
+  .email_box  p input:not(:placeholder-shown) {
+    width: 90%;
+  }
+
+}

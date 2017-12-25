@@ -1,0 +1,80 @@
+.dash_box {
+  min-height: 101vh;
+}
+
+.tick_row {
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.ticket_box {
+  position: relative;
+}
+
+#counter {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+  padding: 1rem;
+  top: -1rem;
+  left: -1rem;
+  background-color: #18BC9C;
+  color: #FFF;
+  font-weight: bolder;
+}
+
+.flex_contain {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex_describe {
+  flex-basis: 95%;
+  background-color: #2C3E50;
+  text-align: center;
+  color: #FFF;
+}
+
+.flex_contain {
+  flex-basis: 10%;
+}
+
+.tick_block {
+  padding: 2rem;
+  background-color: #2C3E50;
+  color: #FFF;
+  text-align: center;
+}
+
+.tick_row p {
+  text-align: center;
+  color: #FFF;
+  padding: 1rem;
+}
+
+#load {
+  margin: 0 auto;
+  text-align: center;
+  color: #FFF;
+  padding: 1rem;
+  background-color: #2C3E50;
+  margin-bottom: 3rem;
+}
+
+.dToView {
+  background-color: #18BC9C;
+  transition: transform .1s ease-in-out;
+}
+
+.dToView:hover {
+  transform: translateY(-2px);
+}
+
+.op {
+  background-color: #11772D
+}
+
+.cl {
+  background-color: #5F7C8A;
+}
