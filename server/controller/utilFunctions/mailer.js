@@ -67,7 +67,7 @@ module.exports = {
       })      
     }
 
-    if (!to.length) {
+    if (to.length) {
       let mailOptions = {
         from: emailId, // sender address
         to: to, // list of receivers
@@ -97,7 +97,7 @@ module.exports = {
       })      
     }
 
-    if(!to.length) {
+    if(to.length) {
       let mailOptions = {
         from: emailId, // sender address
         to: to, // list of receivers
